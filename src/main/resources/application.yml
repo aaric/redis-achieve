@@ -1,0 +1,5 @@
+# Spring settings
+spring:
+    profiles:
+        active: dev
+
