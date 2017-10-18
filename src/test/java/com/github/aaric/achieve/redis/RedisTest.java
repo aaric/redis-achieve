@@ -25,13 +25,13 @@ public class RedisTest {
     protected RedisTemplate<String, String> redisTemplate;
 
     @Test
-    public void testString() {
+    public void testSetString() {
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         valueOperations.set("string", "hello", 1000, TimeUnit.SECONDS);
     }
 
     @Test
-    public void testList() {
+    public void testSetList() {
         String key = "list";
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
         listOperations.rightPush(key, "first");
@@ -39,5 +39,11 @@ public class RedisTest {
         listOperations.rightPush(key, "second");
         listOperations.rightPush(key, "third");
         redisTemplate.expire(key, 1000, TimeUnit.SECONDS);
+    }
+
+    @Test
+    public void testAddNamespace() {
+        ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+        valueOperations.set("com.github:aaric:hello", "hello world", 1000, TimeUnit.SECONDS);
     }
 }
