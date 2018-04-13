@@ -135,10 +135,10 @@ public class RedisClusterTest {
 
         long history = Calendar.getInstance().getTimeInMillis();
         System.out.println("--begin");
-        System.out.println(String.format("Online: %d", redisTemplate.keys(NS_DEVICE_ONLINE + "*").size()));
-        System.out.println(String.format("Offline: %d", hashOperations.size(offlineKey)));
-        System.out.println(String.format("Heartbeat: %d", hashOperations.size(heartbeatKey)));
-        System.out.println(String.format("Time Diff: %d", Calendar.getInstance().getTimeInMillis() - history)); //14790
+        System.out.println(String.format("Online: %d", redisTemplate.keys(NS_DEVICE_ONLINE + "*").size())); //200001
+        System.out.println(String.format("Offline: %d", hashOperations.size(offlineKey))); //200000
+        System.out.println(String.format("Heartbeat: %d", hashOperations.size(heartbeatKey))); //200000
+        System.out.println(String.format("Time Diff: %d", Calendar.getInstance().getTimeInMillis() - history)); //5076
         System.out.println("--end");
     }
 }
