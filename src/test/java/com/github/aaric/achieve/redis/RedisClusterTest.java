@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.geo.Point;
+import org.springframework.data.redis.core.BoundGeoOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -14,6 +16,7 @@ import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -65,6 +68,7 @@ public class RedisClusterTest {
     }
 
     @Test
+    @Ignore
     public void testDelete() {
         System.out.println("--begin");
         // NS_DEVICE_ONLINE | NS_DEVICE_OFFLINE | NS_DEVICE_HEARTBEAT
@@ -82,6 +86,7 @@ public class RedisClusterTest {
     }
 
     @Test
+    @Ignore
     public void testPrint() {
         int maxLength = 200000;
         System.out.println(MessageFormat.format(NS_VEHICLE_VIN + TEST_VIN + "{0,number,000000}", maxLength));
@@ -92,6 +97,7 @@ public class RedisClusterTest {
     }
 
     @Test
+    @Ignore
     public void testOpsForHash() {
         int maxLength = 200000;
         String vin;
@@ -128,6 +134,7 @@ public class RedisClusterTest {
     }
 
     @Test
+    @Ignore
     public void testQuery2() {
         String offlineKey = NS_DEVICE_OFFLINE + "list";
         String heartbeatKey = NS_DEVICE_OFFLINE + "list";
@@ -140,5 +147,30 @@ public class RedisClusterTest {
         System.out.println(String.format("Heartbeat: %d", hashOperations.size(heartbeatKey))); //200000
         System.out.println(String.format("Time Diff: %d", Calendar.getInstance().getTimeInMillis() - history)); //5076
         System.out.println("--end");
+    }
+
+    @Test
+    @Ignore
+    public void testQuery3() {
+        HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
+        String offlineKey = NS_DEVICE_OFFLINE + "list";
+        System.out.println(hashOperations.get(offlineKey, MessageFormat.format(TEST_VIN + "{0,number,000000}", 1)));
+    }
+
+    @Test
+    @Ignore
+    public void testOpsBoundGeo() {
+        BoundGeoOperations<String, String> boundGeoOperations = redisTemplate.boundGeoOps("hello:geo");
+
+        Point point;
+        for (int i = 1; i < 10; i++) {
+            point = new Point(118.803805, 32.060168);
+            boundGeoOperations.geoAdd(point, MessageFormat.format(TEST_VIN + "{0,number,000000}", i));
+        }
+
+        List<Point> pointList = boundGeoOperations.geoPos(MessageFormat.format(TEST_VIN + "{0,number,000000}", 1));
+        System.out.println(pointList);
+
+        boundGeoOperations.geoRemove(MessageFormat.format(TEST_VIN + "{0,number,000000}", 1));
     }
 }
