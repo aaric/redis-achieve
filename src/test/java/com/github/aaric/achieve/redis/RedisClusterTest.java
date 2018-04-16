@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * RedisClusterTest
@@ -172,5 +173,28 @@ public class RedisClusterTest {
         System.out.println(pointList);
 
         boundGeoOperations.geoRemove(MessageFormat.format(TEST_VIN + "{0,number,000000}", 1));
+    }
+
+    @Test
+    @Ignore
+    public void testExpire() {
+        int maxLength = 200000;
+        String vin;
+
+        int count = 0;
+        for (int i = 1; i <= maxLength; i++) {
+            // vin
+            vin = MessageFormat.format(TEST_VIN + "{0,number,000000}", i);
+
+            // print
+            if (0 == (++count % 1000)) {
+                System.out.println(String.format("Expire Current: %d", count));
+                System.out.println(vin);
+            }
+
+            // Online
+            redisTemplate.expire(NS_DEVICE_ONLINE + vin, 30, TimeUnit.SECONDS);
+        }
+        System.out.println("--end");
     }
 }
