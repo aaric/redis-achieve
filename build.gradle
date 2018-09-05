@@ -1,5 +1,5 @@
 group 'com.github.aaric'
-version '0.2.1-SNAPSHOT'
+version '0.3.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -15,14 +15,14 @@ repositories {
 }
 
 dependencies {
-    testCompile("junit:junit:4.12")
-    testCompile("org.springframework.boot:spring-boot-starter-test:1.5.+")
-
     compile("org.slf4j:slf4j-api:1.7.+")
 
     compile("org.apache.commons:commons-lang3:3.+")
 
     compile("org.springframework.boot:spring-boot-starter-data-redis:1.5.+")
+
+    testCompile("junit:junit:4.12")
+    testCompile("org.springframework.boot:spring-boot-starter-test:1.5.+")
 }
 
 buildscript {
