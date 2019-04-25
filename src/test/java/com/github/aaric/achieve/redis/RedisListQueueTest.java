@@ -1,6 +1,7 @@
 package com.github.aaric.achieve.redis;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class RedisListQueueTest {
     private RedisTemplate<String, String> redisTemplate;
 
     @Test
+    @Ignore
     public void testLPush() {
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
 
@@ -44,6 +46,7 @@ public class RedisListQueueTest {
     }
 
     @Test
+    @Ignore
     public void testRPop() {
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
 

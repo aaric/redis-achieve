@@ -1,17 +1,18 @@
 # Spring settings
 spring:
-    profiles:
-        active: dev
-    redis:
-        #host: localhost
-        #port: 6379
-        database: 0
-        cluster:
-            max-redirects: 3
-            nodes: 10.0.11.30:7001,10.0.11.30:7011,10.0.11.31:7002,10.0.11.31:7012,10.0.11.32:7003,10.0.11.32:7013
-        jedis:
-            pool:
-                max-active: 8
-                max-idle: 8
-                max-wait: -1ms
-                min-idle: 0
+  profiles:
+    active: dev
+  redis:
+    password: ${REDIS_PASSWORD}
+    #host: localhost
+    #port: 6379
+    database: 0
+    cluster:
+      max-redirects: ${REDIS_CLUSTER_MAX_REDIRECTS}
+      nodes: ${REDIS_CLUSTER_NODES}
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0

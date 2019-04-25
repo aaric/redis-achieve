@@ -1,5 +1,7 @@
 package com.github.aaric.achieve.redis;
 
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +27,14 @@ public class RedisTest {
     protected RedisTemplate<String, String> redisTemplate;
 
     @Test
+    @Ignore
     public void testSetString() {
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         valueOperations.set("string", "hello", 1000, TimeUnit.SECONDS);
     }
 
     @Test
+    @Ignore
     public void testSetList() {
         String key = "list";
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
@@ -42,8 +46,18 @@ public class RedisTest {
     }
 
     @Test
+    @Ignore
     public void testAddNamespace() {
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         valueOperations.set("com.github:aaric:hello", "hello world", 1000, TimeUnit.SECONDS);
+    }
+
+    @Test
+    @Ignore
+    public void testRequirePass() {
+        ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+        String sizeString = valueOperations.get("hello:index");
+        System.out.println(sizeString);
+        Assert.assertNotNull(sizeString);
     }
 }
