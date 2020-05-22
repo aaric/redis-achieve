@@ -7,3 +7,16 @@
 [![release](https://img.shields.io/badge/release-0.4.1-blue.svg)](https://github.com/aaric/redis-achieve/releases)
 
 > Redis Learning.
+
+## Redis Shell
+
+```bash
+# select db
+127.0.0.1:6379> select 0
+# auth
+127.0.0.1:6379> auth redis2019
+# subscribe
+127.0.0.1:6379> subscribe "message:channel"
+# publish
+127.0.0.1:6379> publish "message:channel" "hello world"
+```

@@ -1,8 +1,11 @@
 package com.github.aaric.achieve.redis.runner;
 
+import com.github.aaric.achieve.redis.config.RedisConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,8 +19,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedisRunner implements CommandLineRunner {
 
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
     @Override
     public void run(String... args) throws Exception {
         log.info("hello...");
+        redisTemplate.convertAndSend(RedisConfig.TEST_CHANNEL, "hello redis");
     }
 }

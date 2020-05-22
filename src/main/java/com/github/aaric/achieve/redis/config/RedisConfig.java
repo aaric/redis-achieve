@@ -14,6 +14,11 @@ import org.springframework.data.redis.core.*;
 @Configuration
 public class RedisConfig {
 
+    /**
+     * 订阅频道
+     */
+    public static final String TEST_CHANNEL = "message:channel";
+
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
