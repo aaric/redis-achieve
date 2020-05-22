@@ -3,8 +3,7 @@ package com.github.aaric.achieve.redis.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.*;
 
 /**
  * Redis配置
@@ -15,21 +14,41 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 @Configuration
 public class RedisConfig {
 
-    private StringRedisTemplate template;
-
     @Autowired
-    public RedisConfig(StringRedisTemplate template) {
-        this.template = template;
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Bean
+    public ValueOperations<String, String> valueOperations() {
+        // STRING（字符串）
+        return redisTemplate.opsForValue();
     }
 
-    /**
-     * redisTemplate
-     *
-     * @return
-     */
     @Bean
-    RedisTemplate<String, String> redisTemplate() {
-        // STRING（字符串）、LIST（列表）、SET（集合）、HASH（散列）和ZSET（有序集合）
-        return template;
+    public ListOperations<String, String> listOperations() {
+        // LIST（列表）
+        return redisTemplate.opsForList();
+    }
+
+    @Bean
+    public SetOperations<String, String> setOperations() {
+        // SET（集合）
+        return redisTemplate.opsForSet();
+    }
+
+    @Bean
+    public HashOperations<String, String, String> hashOperations() {
+        // HASH（散列）
+        return redisTemplate.opsForHash();
+    }
+
+    @Bean
+    public ZSetOperations<String, String> zSetOperations() {
+        // ZSET（有序集合）
+        return redisTemplate.opsForZSet();
+    }
+
+    public GeoOperations<String, String> geoOperations() {
+        // GEO（地理）
+        return redisTemplate.opsForGeo();
     }
 }

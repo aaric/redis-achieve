@@ -19,7 +19,7 @@ logging:
         web: ERROR
       hibernate: INFO
     com:
-      incarcloud: DEBUG
+      github: DEBUG
   file:
     path: ${LOGGING_FILE_PATH:./}
     name: output.log
@@ -36,9 +36,9 @@ spring:
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:redis2019}
     database: ${REDIS_DATABASE:0}
-    #cluster:
+      #cluster:
       #max-redirects: ${REDIS_CLUSTER_MAX_REDIRECTS:6}
-      #nodes: ${REDIS_CLUSTER_NODES:10.0.11.22:7001,10.0.11.23:7001,10.0.11.24:7001,10.0.11.22:7011,10.0.11.23:7011,10.0.11.24:7011}
+    #nodes: ${REDIS_CLUSTER_NODES:10.0.11.22:7001,10.0.11.23:7001,10.0.11.24:7001,10.0.11.22:7011,10.0.11.23:7011,10.0.11.24:7011}
     jedis:
       pool:
         max-active: 8

@@ -22,7 +22,7 @@ buildscript {
 }
 
 group "com.github.aaric"
-version "0.4.0-SNAPSHOT"
+version "0.4.1-SNAPSHOT"
 
 apply plugin: "java"
 apply plugin: "io.freefair.lombok"
@@ -52,8 +52,9 @@ configurations {
 dependencies {
     compile("org.slf4j:slf4j-api")
 
-    compile("org.apache.commons:commons-lang3:")
+    compile("org.apache.commons:commons-lang3")
 
+    compile("org.springframework.boot:spring-boot-starter")
     compile("org.springframework.boot:spring-boot-starter-data-redis")
 
     testCompile "org.junit.jupiter:junit-jupiter-api"

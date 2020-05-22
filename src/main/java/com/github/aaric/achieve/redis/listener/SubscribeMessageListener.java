@@ -1,7 +1,6 @@
 package com.github.aaric.achieve.redis.listener;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -12,7 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
  * @author Aaric, created on 2018-09-05T15:13.
  * @since 0.3.0-SNAPSHOT
  */
-@Configuration
+//@Configuration
 public class SubscribeMessageListener implements MessageListener {
 
     public static final String TEST_CHANNEL = "message:channel";
