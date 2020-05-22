@@ -1,6 +1,7 @@
 package com.github.aaric.achieve.redis;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class RedisListQueueTest {
     private RedisTemplate<String, String> redisTemplate;
 
     @Test
+    @Disabled
     public void testLPush() {
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
 
@@ -44,6 +46,7 @@ public class RedisListQueueTest {
     }
 
     @Test
+    @Disabled
     public void testRPop() {
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
 

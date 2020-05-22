@@ -1,6 +1,7 @@
 package com.github.aaric.achieve.redis;
 
 import com.github.aaric.achieve.redis.listener.SubscribeMessageListener;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class RedisPubSubQueueTest {
     private RedisTemplate<String, String> redisTemplate;
 
     @Test
+    @Disabled
     public void testPublishMessage() {
         String text = MessageFormat.format("{0,number,000000}", new Random().nextInt(999999));
         System.out.println("text: " + text);
