@@ -1,5 +1,6 @@
 package com.github.aaric.achieve.redis;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * RedisTest
  *
  * @author Aaric, created on 2017-10-11T11:54.
- * @since 1.0-SNAPSHOT
+ * @since 0.1.0-SNAPSHOT
  */
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -57,6 +58,6 @@ public class RedisTest {
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         String sizeString = valueOperations.get("hello:index");
         System.out.println(sizeString);
-        //Assert.assertNotNull(sizeString);
+        Assertions.assertNotNull(sizeString);
     }
 }
