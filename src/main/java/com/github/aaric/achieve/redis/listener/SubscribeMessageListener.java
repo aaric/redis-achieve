@@ -25,6 +25,6 @@ public class SubscribeMessageListener implements MessageListener {
         String result = (String) redisTemplate.getValueSerializer().deserialize(message.getBody());
         String topic = (String) redisTemplate.getValueSerializer().deserialize(message.getChannel());
         System.err.println("---------");
-        log.debug("topic: {}, result: {}", topic, result);
+        log.info("topic: {}, result: {}", topic, result);
     }
 }

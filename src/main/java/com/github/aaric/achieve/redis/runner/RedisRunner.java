@@ -24,7 +24,7 @@ public class RedisRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("hello...");
+        log.info("hello redis...");
         redisTemplate.convertAndSend(RedisConfig.TEST_CHANNEL, "hello redis");
     }
 }

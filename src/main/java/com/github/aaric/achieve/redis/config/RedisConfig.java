@@ -1,9 +1,13 @@
 package com.github.aaric.achieve.redis.config;
 
+import com.github.aaric.achieve.redis.listener.SubscribeMessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.listener.PatternTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 
 /**
  * Redis配置
@@ -23,37 +27,40 @@ public class RedisConfig {
     private RedisTemplate<String, String> redisTemplate;
 
     @Bean
-    public ValueOperations<String, String> valueOperations() {
-        // STRING（字符串）
+    ValueOperations<String, String> valueOperations() {
         return redisTemplate.opsForValue();
     }
 
     @Bean
-    public ListOperations<String, String> listOperations() {
-        // LIST（列表）
+    ListOperations<String, String> listOperations() {
         return redisTemplate.opsForList();
     }
 
     @Bean
-    public SetOperations<String, String> setOperations() {
-        // SET（集合）
+    SetOperations<String, String> setOperations() {
         return redisTemplate.opsForSet();
     }
 
     @Bean
-    public HashOperations<String, String, String> hashOperations() {
-        // HASH（散列）
+    HashOperations<String, String, String> hashOperations() {
         return redisTemplate.opsForHash();
     }
 
     @Bean
-    public ZSetOperations<String, String> zSetOperations() {
-        // ZSET（有序集合）
+    ZSetOperations<String, String> zSetOperations() {
         return redisTemplate.opsForZSet();
     }
 
-    public GeoOperations<String, String> geoOperations() {
-        // GEO（地理）
+    @Bean
+    GeoOperations<String, String> geoOperations() {
         return redisTemplate.opsForGeo();
+    }
+
+    @Bean
+    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory, SubscribeMessageListener subscribeMessageListener) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.addMessageListener(subscribeMessageListener, new PatternTopic(TEST_CHANNEL));
+        return container;
     }
 }
