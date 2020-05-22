@@ -1,12 +1,12 @@
 package com.github.aaric.achieve.redis;
 
 import com.github.aaric.achieve.redis.listener.SubscribeMessageListener;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.MessageFormat;
 import java.util.Random;
@@ -18,7 +18,7 @@ import java.util.Random;
  * @since 0.3.0-SNAPSHOT
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class RedisPubSubQueueTest {
 
     @Autowired

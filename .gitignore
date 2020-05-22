@@ -3,6 +3,9 @@
 build/
 *.iml
 *.log
+*.log.*.gz
 application-*.yml
+bootstrap-*.yml
 .DS_Store
 out/
+lombok.*
