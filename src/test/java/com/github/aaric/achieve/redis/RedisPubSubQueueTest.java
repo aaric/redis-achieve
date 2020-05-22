@@ -1,13 +1,13 @@
 package com.github.aaric.achieve.redis;
 
 import com.github.aaric.achieve.redis.listener.SubscribeMessageListener;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.MessageFormat;
 import java.util.Random;
@@ -19,14 +19,14 @@ import java.util.Random;
  * @since 0.3.0-SNAPSHOT
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class RedisPubSubQueueTest {
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
     @Test
-    @Ignore
+    @Disabled
     public void testPublishMessage() {
         String text = MessageFormat.format("{0,number,000000}", new Random().nextInt(999999));
         System.out.println("text: " + text);

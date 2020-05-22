@@ -1,14 +1,14 @@
 package com.github.aaric.achieve.redis;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.MessageFormat;
 import java.util.Random;
@@ -20,7 +20,7 @@ import java.util.Random;
  * @since 0.3.0-SNAPSHOT
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class RedisListQueueTest {
 
     private static final String TEST_QUEUE = "message:queue";
@@ -29,7 +29,7 @@ public class RedisListQueueTest {
     private RedisTemplate<String, String> redisTemplate;
 
     @Test
-    @Ignore
+    @Disabled
     public void testLPush() {
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
 
@@ -42,11 +42,11 @@ public class RedisListQueueTest {
 
         long count = listOperations.size(TEST_QUEUE);
         System.out.println("count: " + count);
-        Assert.assertNotEquals(0L, count);
+        Assertions.assertNotEquals(0L, count);
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testRPop() {
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
 
@@ -58,6 +58,6 @@ public class RedisListQueueTest {
         }
 
         count = listOperations.size(TEST_QUEUE);
-        Assert.assertEquals(0L, count);
+        Assertions.assertEquals(0L, count);
     }
 }

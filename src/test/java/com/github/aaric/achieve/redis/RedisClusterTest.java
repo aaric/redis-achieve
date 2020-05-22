@@ -1,8 +1,8 @@
 package com.github.aaric.achieve.redis;
 
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.geo.Point;
@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.BoundGeoOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.DateFormat;
 import java.text.MessageFormat;
@@ -26,8 +26,8 @@ import java.util.concurrent.TimeUnit;
  * @author Aaric, created on 2018-04-04T10:29.
  * @since 0.0.1-SNAPSHOT
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@ExtendWith(SpringExtension.class)
 public class RedisClusterTest {
 
     private static final String NS_VEHICLE_VIN = "com.incarcloud.rooster:vehicle-vin:";
@@ -44,7 +44,7 @@ public class RedisClusterTest {
     protected RedisTemplate<String, String> redisTemplate;
 
     @Test
-    @Ignore
+    @Disabled
     public void testOpsForValue() {
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         for (int i = 0; i < 10; i++) {
@@ -58,7 +58,7 @@ public class RedisClusterTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testQuery() {
         long history = Calendar.getInstance().getTimeInMillis();
         System.out.println("--begin");
@@ -69,7 +69,7 @@ public class RedisClusterTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testDelete() {
         System.out.println("--begin");
         // NS_DEVICE_ONLINE | NS_DEVICE_OFFLINE | NS_DEVICE_HEARTBEAT
@@ -87,7 +87,7 @@ public class RedisClusterTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testPrint() {
         int maxLength = 200000;
         System.out.println(MessageFormat.format(NS_VEHICLE_VIN + TEST_VIN + "{0,number,000000}", maxLength));
@@ -98,7 +98,7 @@ public class RedisClusterTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testOpsForHash() {
         int maxLength = 200000;
         String vin;
@@ -135,7 +135,7 @@ public class RedisClusterTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testQuery2() {
         String offlineKey = NS_DEVICE_OFFLINE + "list";
         String heartbeatKey = NS_DEVICE_OFFLINE + "list";
@@ -151,7 +151,7 @@ public class RedisClusterTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testQuery3() {
         HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
         String offlineKey = NS_DEVICE_OFFLINE + "list";
@@ -159,7 +159,7 @@ public class RedisClusterTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testOpsBoundGeo() {
         BoundGeoOperations<String, String> boundGeoOperations = redisTemplate.boundGeoOps("hello:geo");
 
@@ -176,7 +176,7 @@ public class RedisClusterTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testExpire() {
         int maxLength = 200000;
         String vin;

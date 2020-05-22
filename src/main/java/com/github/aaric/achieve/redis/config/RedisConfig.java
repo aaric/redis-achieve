@@ -7,18 +7,18 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
- * Spring Boot Redis Configuration
+ * Redis配置
  *
  * @author Aaric, created on 2017-10-11T16:47.
- * @since 1.0-SNAPSHOT
+ * @since 0.4.0-SNAPSHOT
  */
 @Configuration
-public class RedisConfiguration {
+public class RedisConfig {
 
     private StringRedisTemplate template;
 
     @Autowired
-    public RedisConfiguration(StringRedisTemplate template) {
+    public RedisConfig(StringRedisTemplate template) {
         this.template = template;
     }
 
