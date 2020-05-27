@@ -22,9 +22,8 @@ public class SubscribeMessageListener implements MessageListener {
 
     @Override
     public void onMessage(Message message, byte[] pattern) {
-        log.info("hello listener...");
-        String result = (String) redisTemplate.getValueSerializer().deserialize(message.getBody());
         String topic = (String) redisTemplate.getValueSerializer().deserialize(message.getChannel());
-        log.info("topic: {}, result: {}", topic, result);
+        String body = (String) redisTemplate.getValueSerializer().deserialize(message.getBody());
+        log.info("Redis(topic={}): {}", topic, body);
     }
 }
