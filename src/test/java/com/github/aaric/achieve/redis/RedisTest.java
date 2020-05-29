@@ -28,13 +28,6 @@ public class RedisTest {
 
     @Test
     @Disabled
-    public void testSetString() {
-        ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
-        valueOperations.set("string", "hello", 1000, TimeUnit.SECONDS);
-    }
-
-    @Test
-    @Disabled
     public void testSetList() {
         String key = "list";
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
