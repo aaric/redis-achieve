@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubscribeMessageListener implements MessageListener {
 
-    public static final String TEST_CHANNEL = "queue:message";
+    public static final String TEST_CHANNEL = "message:channel";
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
