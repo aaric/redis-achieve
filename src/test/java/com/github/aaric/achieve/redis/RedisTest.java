@@ -36,10 +36,21 @@ public class RedisTest {
         // jtt808
         for (int i = 0; i < 10; i++) {
             String vin = MessageFormat.format("TESTGPS0000{0,number,000000}", i + 1);
-            String deviceId = MessageFormat.format("911111{0,number,000000}", i + 1);
+            String deviceId = MessageFormat.format("91111{0,number,000000}", i + 1);
             System.err.println(vin + ":" + deviceId);
 
             hashOperations.put("boar:device-id", deviceId, vin);
+        }
+
+        // tbox
+        for (int i = 0; i < 10; i++) {
+            String vin = MessageFormat.format("TESTBOX0000{0,number,000000}", i + 1);
+            String deviceId = MessageFormat.format("KEYTEST{0,number,000000}", i + 1);
+            System.err.println(vin + ":" + deviceId);
+
+            hashOperations.put("boar:device-id", deviceId, vin);
+            hashOperations.put("boar:device-key", deviceId, "MDEyMzQ1Njc4OWFiY2RlZg==");
+            hashOperations.put("boar:device-model", deviceId, "{\"seriesCode\":0,\"yearCode\":19,\"brandCode\":86,\"displacementCode\":0}");
         }
     }
 
@@ -64,7 +75,7 @@ public class RedisTest {
 
         //hashOperations.put("boar:device-id", deviceId, "TESTKDL0000000001");
         //hashOperations.put("boar:device-key", deviceId, "MDEyMzQ1Njc4OWFiY2RlZg==");
-        //hashOperations.put("boar:device-model", deviceId, "{\"seriesCode\":0,\"yearCode\":13,\"brandCode\":86,\"displacementCode\":0}");
+        //hashOperations.put("boar:device-model", deviceId, "{\"seriesCode\":0,\"yearCode\":19,\"brandCode\":86,\"displacementCode\":0}");
     }
 
     @Test
