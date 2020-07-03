@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.text.MessageFormat;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +30,20 @@ public class RedisTest {
     protected RedisTemplate<String, String> redisTemplate;
 
     @Test
+    public void testBizIsr() {
+        HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
+
+        // jtt808
+        for (int i = 0; i < 10; i++) {
+            String vin = MessageFormat.format("TESTGPS0000{0,number,000000}", i + 1);
+            String deviceId = MessageFormat.format("911111{0,number,000000}", i + 1);
+            System.err.println(vin + ":" + deviceId);
+
+            hashOperations.put("boar:device-id", deviceId, vin);
+        }
+    }
+
+    @Test
     public void testBizOnline() {
         String vin = "LFV2A21J970002020"; //LVGBPB9E7KG006111
         HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
@@ -40,7 +55,7 @@ public class RedisTest {
 
     @Test
     public void testBizKey() {
-        String deviceId = "KEYTEST052"; //YK12181287,YK12014921
+        String deviceId = "911111100001"; //YK12181287,YK12014921
         HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
         System.err.println("# " + deviceId);
         System.err.println("boar:device-id    -> " + hashOperations.get("boar:device-id", deviceId));
@@ -54,7 +69,7 @@ public class RedisTest {
 
     @Test
     public void testBizRedis() {
-        String vin = "CS123456720242617";
+        String vin = "HLFTEST0000000010";
         HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
         Map<String, String> map = hashOperations.entries("boar:device-id");
         map.forEach((key, value) -> {
