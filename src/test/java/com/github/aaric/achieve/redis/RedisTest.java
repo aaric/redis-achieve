@@ -30,6 +30,23 @@ public class RedisTest {
     protected RedisTemplate<String, String> redisTemplate;
 
     @Test
+    public void testBatteryVoltage() {
+        // KEYTEST000001 | TESTGPS0000000001
+        HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
+
+        String key = "business:alarmVoltageThreshold";
+        String deviceId = "KEYTEST01"; //KEYTEST000001
+        String hashKey = "12:31"; //86:0
+
+        //hashOperations.entries(key).forEach((k, v) -> System.err.println(k + " -> " + v));
+        System.err.println(hashOperations.get("boar:device-model", deviceId));
+        System.err.println(hashOperations.get("boar:vehicle-alarm", deviceId));
+
+        //hashOperations.put(key, hashKey, "16,17");
+        System.err.println(hashOperations.get(key, hashKey));
+    }
+
+    @Test
     public void testBizIsr() {
         HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
 
